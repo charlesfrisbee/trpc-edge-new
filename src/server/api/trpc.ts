@@ -1,3 +1,7 @@
+import { type inferAsyncReturnType, initTRPC } from "@trpc/server";
+import superjson from "superjson";
+import { ZodError } from "zod";
+import { type FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -54,10 +58,6 @@ export type Context = inferAsyncReturnType<typeof createTRPCContext>;
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
-import { type inferAsyncReturnType, initTRPC } from "@trpc/server";
-import superjson from "superjson";
-import { ZodError } from "zod";
-import { type FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
